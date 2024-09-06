@@ -1,0 +1,120 @@
+{% load static %}
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+        <!-- Container wrapper -->
+        <div class="container">
+            <!-- Toggle button -->
+            <button
+                    data-mdb-collapse-init
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                    <img
+                            src="{% static 'da.jpg' %}"
+                            height="50"
+                            alt="MDB Logo"
+                            loading="lazy"
+                            style="border-radius: 50%"
+                    />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Bosh sahifa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#news">Yangiliklar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}#color">Biz haqimizda</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a
+                            data-mdb-dropdown-init
+                            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuAvatar"
+                            role="button"
+                            aria-expanded="false"
+                    >
+                        <img
+                                src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+                                class="rounded-circle"
+                                height="45"
+                                alt="Black and White Portrait of a Man"
+                                loading="lazy"
+                        />
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuAvatar"
+                    >
+                        {% if request.user.is_authenticated %}
+                        	<li>
+                                <a class="dropdown-item" href="#">{{ request.user.get_full_name }}</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+                            </li>
+                        {% endif %} 
+                    </ul>
+                </div>
+            </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    {% if request.path == '/' %}
+        <!-- Background image -->
+        <div
+            class="p-5 text-center bg-image container"
+            style="
+            background-image: url('https://c0.wallpaperflare.com/preview/71/610/431/advice-article-background-beverage.jpg');
+            height: 600px;
+            margin-top: 5px;
+            border-radius: 10px 10px 20px 20px;
+        "
+        >
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-white">
+                        <h1 class="mb-3">Asatullayev's blog</h1>
+                        <h4 class="mb-3">Bizda eng sifatli va kerakli ma'lumotlar</h4>
+                        <a data-mdb-ripple-init class="btn btn-outline-success btn-lg" target="_blank"
+                           href="https://t.me/asatullayev0509" role="button"
+                        >Biz bilan bog'lanish</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background image -->
+    {% endif %}
+
+</header>
