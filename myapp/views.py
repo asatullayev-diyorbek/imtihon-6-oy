@@ -176,7 +176,6 @@ def user_logout(request):
     return redirect('login')
 
 
-
 def user_register(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
